@@ -20,6 +20,14 @@ class Settings(BaseSettings):
     PG_USER_PASSWORD: str = Field(..., env='PG_USER_PASSWORD')
     PG_ROLE: str = Field(None, env='PG_ROLE')
 
+    # Database for tests:
+    TEST_DATABASE: dict = {
+        'role_name': 'warehouse_test_role',
+        'username': 'warehouse_test_user',
+        'user_password': '1111',
+        'db_name': 'warehouse_test_db'
+    }
+
     # Security:
     # To generate a secure random secret key use the command in your terminal:
     # `openssl rand -hex 32`.
@@ -44,6 +52,20 @@ class Settings(BaseSettings):
             f'{self.PG_HOST}:'
             f'{self.PG_PORT}/'
             f'{self.PG_USER_DB}'
+        )
+
+    def get_test_database_url(self) -> str:
+        """
+        Gets the full path to the test database.
+        :return: URL string.
+        """
+        return (
+            f"postgresql+asyncpg://"
+            f"{self.TEST_DATABASE['username']}:"
+            f"{self.TEST_DATABASE['user_password']}@"
+            f"{self.PG_HOST}:"
+            f"{self.PG_PORT}/"
+            f"{self.TEST_DATABASE['db_name']}"
         )
 
 
