@@ -46,3 +46,16 @@
 
 **IMPORTANT:** **If the arguments is not specified, it is taken from the env variables.**
 </details>
+
+<details>
+<summary>POPULATING DATABASE</summary>
+
+1) Populate the empty database with prepared data.:
+   ``` commandline
+   python -m src.utils.db_populating --populate_db
+   ```
+2) Helper:
+    ``` commandline
+    python -m src.utils.db_populating -h
+    ```
+</details>
