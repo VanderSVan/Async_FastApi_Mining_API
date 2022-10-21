@@ -14,8 +14,14 @@ class Settings(BaseSettings):
     API_NAME: str = 'Ore-Concentrate-API'
 
     # Routers:
-    users_router: str = '/users'
-    users_auth_router: str = '/users/auth'
+    user_router: str = '/users'
+    user_auth_router: str = '/users/auth'
+    ore_concentrate_router: str = '/ore_concentrates'
+
+    # Tags:
+    user_tag: list[str] = ['users']
+    user_auth_tag: list[str] = ["users auth"]
+    ore_concentrate_tag: list[str] = ['ore concentrates']
 
     # Database:
     PG_SUPER_DB: str = Field(..., env='PG_SUPER_DB')

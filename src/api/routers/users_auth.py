@@ -27,10 +27,9 @@ from src.utils.auth.signature import Signer
 from src.utils.auth.jwt import JWT
 
 settings = get_settings()
-
 router = APIRouter(
-    prefix=f"{settings.users_auth_router}",
-    tags=["users auth"],
+    prefix=settings.user_auth_router,
+    tags=settings.user_auth_tag,
 )
 
 

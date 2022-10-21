@@ -24,8 +24,8 @@ from src.config import get_settings
 settings = get_settings()
 
 router = APIRouter(
-    prefix=f"{settings.users_router}",
-    tags=["users"],
+    prefix=settings.user_router,
+    tags=settings.user_tag,
 )
 
 
