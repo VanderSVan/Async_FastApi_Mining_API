@@ -18,6 +18,7 @@ from src.db.db_sqlalchemy import BaseModel
 from src.config import get_settings
 from src.api.models.ore_concentrate import OreConcentrateModel
 from src.api.models.ore_concentrate_content import OreConcentrateContentModel
+from src.api.models.user import UserModel
 
 settings = get_settings()
 
