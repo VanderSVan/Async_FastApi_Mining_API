@@ -11,6 +11,7 @@ project_dir = api_dir.parent
 class Settings(BaseSettings):
     # API
     API_URL: str = '/api/v1'
+    API_NAME: str = 'Ore-Concentrate-API'
 
     # Routers:
     users_router: str = '/users'
