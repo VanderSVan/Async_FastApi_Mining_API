@@ -17,11 +17,13 @@ class Settings(BaseSettings):
     user_router: str = '/users'
     user_auth_router: str = '/users/auth'
     ore_concentrate_router: str = '/ore_concentrates'
+    content_router: str = '/ore_concentrates/content'
 
     # Tags:
     user_tag: list[str] = ['users']
     user_auth_tag: list[str] = ["users auth"]
     ore_concentrate_tag: list[str] = ['ore concentrates']
+    content_tag: list[str] = ['ore concentrate content']
 
     # Database:
     PG_SUPER_DB: str = Field(..., env='PG_SUPER_DB')

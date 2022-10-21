@@ -6,7 +6,8 @@ from loguru import logger
 from src.api.routers import (
     user,
     users_auth,
-    ore_concentrate
+    ore_concentrate,
+    content
 )
 
 from src.utils.exceptions.base import JSONException
@@ -28,6 +29,7 @@ def create_app(with_logger: bool = True):
     application.include_router(users_auth.router, prefix=api_url)
     application.include_router(user.router, prefix=api_url)
     application.include_router(ore_concentrate.router, prefix=api_url)
+    application.include_router(content.router, prefix=api_url)
 
     # Exception handlers
     @application.exception_handler(JSONException)

@@ -3,7 +3,7 @@ from sqlalchemy import Column, Integer, Numeric, DateTime, ForeignKey
 from src.db.db_sqlalchemy import BaseModel
 
 
-class OreConcentrateContentModel(BaseModel):
+class ContentModel(BaseModel):
     __tablename__ = 'ore_concentrate_contents'
 
     id = Column(Integer, primary_key=True)
