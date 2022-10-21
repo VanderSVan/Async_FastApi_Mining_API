@@ -16,8 +16,8 @@ sys.path.append(str(project_dir))
 
 from src.db.db_sqlalchemy import BaseModel
 from src.config import get_settings
-from src.api.models.ore_concentrate import OreConcentrate
-from src.api.models.ore_concentrate_content import OreConcentrateContent
+from src.api.models.ore_concentrate import OreConcentrateModel
+from src.api.models.ore_concentrate_content import OreConcentrateContentModel
 
 settings = get_settings()
 
