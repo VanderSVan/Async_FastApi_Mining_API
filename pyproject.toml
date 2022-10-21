@@ -18,7 +18,10 @@ python-jose = {extras = ["cryptography"], version = "^3.3.0"}
 passlib = "^1.7.4"
 blake2signer = "^2.5.0"
 bcrypt = "^4.0.1"
-fastapi-mail = "^1.2.0"
+fastapi-mail = {extras = ["httpx"], version = "^1.2.0"}
+celery = "^5.2.7"
+redis = "^4.3.4"
+flower = "^1.2.0"
 
 
 [build-system]
