@@ -46,7 +46,7 @@ class UserSwaggerPatch:
         "username": "some_username",
         "email": "user@example.com",
         "phone": "123456789",
-        "role": "client",
+        "role": "user",
         "status": "unconfirmed"
     })
     admin: UserModel = Depends(get_current_admin)
@@ -59,7 +59,7 @@ class UserSwaggerPost:
         "username": "some_username",
         "email": "user@example.com",
         "phone": "123456789",
-        "role": "client",
+        "role": "user",
         "password": "some_strong_password"
     })
     admin: UserModel = Depends(get_current_admin)

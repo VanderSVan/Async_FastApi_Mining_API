@@ -12,14 +12,14 @@ class UserBaseSchema(BaseSchema):
     username: str = Field(..., min_length=5, max_length=100)
     email: EmailStr
     phone: str = Field(..., min_length=9, max_length=15, regex=r'^([\d]+)$')
-    role: Literal['admin'] | Literal['user'] | Literal['noname']
+    role: Literal['admin'] | Literal['user']
 
 
 class UserPatchSchema(UserBaseSchema):
     username: str | None = Field(None, min_length=5, max_length=100)
     email: EmailStr | None = Field(None)
     phone: str | None = Field(None, min_length=9, max_length=15, regex=r'^([\d]+)$')
-    role: Literal['admin'] | Literal['user'] | Literal['noname'] | None = Field(None)
+    role: Literal['admin'] | Literal['user'] | None = Field(None)
     status: Literal['confirmed'] | Literal['unconfirmed'] | None = Field(None)
 
 
