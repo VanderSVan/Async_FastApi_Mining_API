@@ -55,6 +55,8 @@ class Settings(BaseSettings):
     MAIL_PORT: int = Field(..., env='MAIL_PORT')
     MAIL_SERVER: str = Field(..., env='MAIL_SERVER')
     MAIL_FROM_NAME: str = Field(..., env='MAIL_FROM_NAME')
+    MAIL_STARTTLS: bool = True
+    MAIL_SSL_TLS: bool = False
     MAIL_TLS: bool = True
     MAIL_SSL: bool = False
     USE_CREDENTIALS: bool = True
