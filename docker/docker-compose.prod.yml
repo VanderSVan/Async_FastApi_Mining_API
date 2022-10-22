@@ -47,7 +47,7 @@ services:
     depends_on:
       - backend
       - redis
-    command: python -m celery -A src.utils.celery.celery_config worker -l WARNING --logfile=src/utils/color_logging/logs/celery.log
+    command: python -m celery -A src.utils.celery.celery_config worker -l WARNING --logfile=logs/celery_dev.log
     networks:
       - ore_concentrate_network
     env_file:
