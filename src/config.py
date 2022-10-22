@@ -40,10 +40,10 @@ class Settings(BaseSettings):
 
     # Database for tests:
     TEST_DATABASE: dict = {
-        'role_name': 'warehouse_test_role',
-        'username': 'warehouse_test_user',
+        'role_name': 'ore_concentrate_test_role',
+        'username': 'ore_concentrate_test_user',
         'user_password': '1111',
-        'db_name': 'warehouse_test_db'
+        'db_name': 'ore_concentrate_test_db'
     }
 
     # Security:
