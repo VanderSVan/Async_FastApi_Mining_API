@@ -20,9 +20,9 @@ case "$1" in
 *)
   export COMPOSE_PROJECT_NAME=ore_concentrate
   echo "The production containers data are removing ..."
-  docker rmi ore_concentrate_flower
-  docker rmi ore_concentrate_celery_worker
-  docker rmi ore_concentrate_backend
+  docker rmi ore_concentrate-flower
+  docker rmi ore_concentrate-celery_worker
+  docker rmi ore_concentrate-backend
   docker volume rm ore_concentrate_ore_concentrate-backend ore_concentrate_ore_concentrate-db
   ;;
 esac
