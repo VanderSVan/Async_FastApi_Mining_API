@@ -2,7 +2,7 @@ from dataclasses import dataclass
 from typing import NoReturn, Any
 
 from fastapi import status
-from loguru import logger
+from logs.settings import logger
 
 from src.utils.response_generation.main import get_text
 

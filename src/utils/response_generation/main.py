@@ -8,7 +8,7 @@ If language changes, set `response_generation.main.default_locale` and run `resp
 import json
 from pathlib import Path
 
-from loguru import logger
+from logs.settings import logger
 
 
 default_locale: str = "en"

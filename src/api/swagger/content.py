@@ -66,7 +66,7 @@ class ContentInterfacePatch:
         "ore_concentrate_id": 1,
     }
                                     )
-    admin: UserModel = Depends(get_current_admin)
+    current_confirmed_user: UserModel = Depends(get_current_confirmed_user)
     db: AsyncSession = Depends(get_db)
 
 
@@ -82,7 +82,7 @@ class ContentInterfacePost:
         "ore_concentrate_id": 1,
     }
                                     )
-    admin: UserModel = Depends(get_current_admin)
+    current_confirmed_user: UserModel = Depends(get_current_confirmed_user)
     db: AsyncSession = Depends(get_db)
 
 
@@ -126,7 +126,7 @@ class ContentOutputPatch:
     summary: Optional[str] = 'Patch ore concentrate content by content_id'
     description: Optional[str] = (
         "**Updates** ore concentrate content from db by **content id**. <br />"
-        "Only available to **admins.**"
+        "Available to all **registered users.**"
     )
     response_model: Optional[Type[Any]] = ContentResponsePatchSchema
     status_code: Optional[int] = status.HTTP_200_OK
@@ -137,7 +137,7 @@ class ContentOutputPost:
     summary: Optional[str] = 'Add new ore concentrate content'
     description: Optional[str] = (
         "**Adds** new ore concentrate content into db. <br />"
-        "Only available to **admins.**"
+        "Available to all **registered users.**"
     )
     response_model: Optional[Type[Any]] = ContentResponsePostSchema
     status_code: Optional[int] = status.HTTP_201_CREATED

@@ -1,4 +1,4 @@
-from sqlalchemy import select, update, insert, and_, desc
+from sqlalchemy import select, and_, desc
 from sqlalchemy.sql.selectable import Select
 
 from src.api.models.content import ContentModel
