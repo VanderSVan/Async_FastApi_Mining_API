@@ -6,7 +6,7 @@ class OreConcentrateBaseSchema(BaseModel):
 
 
 class OreConcentrateGetSchema(OreConcentrateBaseSchema):
-    id: int
+    id: int = Field(..., ge=1)
 
     class Config:
         orm_mode = True

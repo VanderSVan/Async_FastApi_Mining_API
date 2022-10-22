@@ -15,6 +15,11 @@ class ContentBaseSchema(BaseModel):
 
 class ContentGetSchema(ContentBaseSchema):
     id: int = Field(..., ge=1)
+    iron_percent: float = Field(...)
+    silicon_percent: float = Field(...)
+    aluminum_percent: float = Field(...)
+    calcium_percent: float = Field(...)
+    sulfur_percent: float = Field(...)
 
     class Config:
         orm_mode = True
