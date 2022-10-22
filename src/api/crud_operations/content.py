@@ -1,7 +1,7 @@
 from datetime import datetime as dt
 from typing import Literal
 
-from sqlalchemy import select, update, insert, and_, desc
+from sqlalchemy import update, insert
 
 from src.api.schemas.content.base_schemas import (
     ContentPatchSchema,
