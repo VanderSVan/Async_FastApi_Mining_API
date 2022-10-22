@@ -3,7 +3,7 @@ from dataclasses import dataclass
 
 from psycopg2 import connect, OperationalError
 from psycopg2.extensions import connection as psycopg2_conn, ISOLATION_LEVEL_AUTOCOMMIT
-from loguru import logger
+from logs.settings import logger
 
 from src.utils.psql_db_manager.core.settings.response_messages import (
     INFO_MSG,

@@ -5,10 +5,11 @@ from fastapi import status
 from fastapi_mail import (
     FastMail,
     MessageSchema,
+    MessageType,
     ConnectionConfig,
 )
 from pydantic import EmailStr
-from loguru import logger
+from logs.settings import logger
 
 from src.config import get_settings
 from src.utils.composing_email.utils import create_expire
@@ -55,7 +56,8 @@ def compose_confirm_email(email: EmailStr,
     message = MessageSchema(
         subject=f'{settings.API_NAME}: registration for the service.',
         recipients=[email],
-        template_body=template_body
+        template_body=template_body,
+        subtype=MessageType.html
     )
 
     fm = FastMail(email_config)
@@ -84,7 +86,8 @@ def compose_reset_password_email(email: EmailStr,
     message = MessageSchema(
         subject=f'{settings.API_NAME}: Reset password.',
         recipients=[email],
-        template_body=template_body
+        template_body=template_body,
+        subtype=MessageType.html
     )
 
     fm = FastMail(email_config)

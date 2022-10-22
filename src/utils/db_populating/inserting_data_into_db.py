@@ -1,7 +1,7 @@
 # !!! Inserting data into an empty database only !!!
 from sqlalchemy import select, insert, func
 from sqlalchemy.ext.asyncio import AsyncSession
-from loguru import logger
+from logs.settings import logger
 
 from src.db.db_sqlalchemy import BaseModel
 from src.api.models.user import UserModel

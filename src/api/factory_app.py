@@ -1,7 +1,7 @@
 from fastapi import FastAPI, Request, status
 from fastapi.responses import JSONResponse
 from sqlalchemy.exc import ProgrammingError
-from loguru import logger
+from logs.settings import logger
 
 from src.api.routers import (
     user,
