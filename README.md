@@ -337,6 +337,7 @@ alembic revision --autogenerate -m "update_model"
 alembic upgrade head
 ```
 </details>
+
 ---
 ## CLI
 <details>
