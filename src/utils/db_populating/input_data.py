@@ -1,4 +1,3 @@
-import pprint
 from random import uniform
 
 users_json = [
@@ -176,4 +175,3 @@ ore_concentrates_content_json = [
         "id": 13
     },
 ]
-pprint.pp(ore_concentrates_content_json)

@@ -6,7 +6,6 @@ from src.utils.psql_db_manager.core.base_classes import (
     Role,
     Privilege
 )
-from src.utils.psql_db_manager.core.utils import PsqlDatabaseConnection
 
 
 def create_all(connection: psycopg2_conn,
@@ -47,6 +46,7 @@ def drop_all(connection: psycopg2_conn,
 
 if __name__ == '__main__':
     from src.config import get_settings
+    from src.utils.psql_db_manager.core.utils import PsqlDatabaseConnection
 
     setting = get_settings()
 
