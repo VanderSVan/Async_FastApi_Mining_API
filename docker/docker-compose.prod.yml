@@ -1,0 +1,76 @@
+version: '3.9'
+
+services:
+  backend:
+    container_name: "ore_concentrate-backend"
+    restart: always
+    build:
+      context: ..
+      target: production
+      dockerfile: ./docker/Dockerfile
+    depends_on:
+      - postgresql_db
+    environment:
+      PG_HOST: "postgresql_db"
+    entrypoint: /docker-entrypoint.sh
+    command: bash -c "uvicorn src.api.app:app --host=0.0.0.0 --port=9000"
+    volumes:
+      - ore_concentrate-backend:/usr/src/app
+    expose:
+      - '9000'
+    networks:
+      - ore_concentrate_network
+    env_file:
+      - ../.env
+
+  pgadmin:
+    container_name: "ore_concentrate-pgadmin4"
+    image: dpage/pgadmin4:6.8
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD}
+    expose:
+      - '5050'
+    networks:
+      - ore_concentrate_network
+    depends_on:
+      - postgresql_db
+
+  celery_worker:
+    container_name: "ore_concentrate-celery"
+    restart: always
+    build:
+      context: ..
+      target: production
+      dockerfile: ./docker/Dockerfile
+    depends_on:
+      - backend
+      - redis
+    command: python -m celery -A src.utils.celery.celery_config worker -l WARNING --logfile=src/utils/color_logging/logs/celery.log
+    networks:
+      - ore_concentrate_network
+    env_file:
+      - ../.env
+
+  flower:
+    container_name: "ore_concentrate-flower"
+    restart: always
+    build:
+      context: ..
+      target: production
+      dockerfile: ./docker/Dockerfile
+    depends_on:
+      - backend
+      - redis
+      - celery_worker
+    command: python -m celery -A src.utils.celery.celery_config flower --url_prefix=flower --basic_auth=${FLOWER_USER}:${FLOWER_PASSWORD}
+    expose:
+      - '5555'
+    networks:
+      - ore_concentrate_network
+    env_file:
+      - ../.env
+
+volumes:
+  ore_concentrate-backend:
