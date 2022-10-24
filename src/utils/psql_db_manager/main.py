@@ -46,14 +46,14 @@ def drop_all(connection: psycopg2_conn,
 
 if __name__ == '__main__':
     from src.config import get_settings
-    from src.utils.psql_db_manager.core.utils import PsqlDatabaseConnection
+    from src.utils.psql_db_manager.core.utils.connection import get_db_connect
 
-    setting = get_settings()
+    settings = get_settings()
 
-    with PsqlDatabaseConnection() as conn:
+    with get_db_connect(settings.get_psql_db_connection_data()) as conn:
         create_all(conn,
-                   setting.PG_USER_DB,
-                   setting.PG_USER,
-                   setting.PG_USER_PASSWORD,
-                   setting.PG_ROLE
+                   settings.PG_USER_DB,
+                   settings.PG_USER,
+                   settings.PG_USER_PASSWORD,
+                   settings.PG_ROLE
                    )

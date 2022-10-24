@@ -2,6 +2,7 @@ from pathlib import Path
 from functools import lru_cache
 
 from pydantic import BaseSettings, Field, EmailStr
+from collections import namedtuple
 
 # Paths:
 api_dir = Path(__file__).parent
@@ -87,6 +88,21 @@ class Settings(BaseSettings):
     class Config:
         env_file = project_dir.joinpath(".env")
         env_file_encoding = 'utf-8'
+
+    def get_psql_db_connection_data(self):
+        ConnectionData = namedtuple(
+            'PsqlConnectionData', [
+                'dbname',
+                'user',
+                'password',
+                'host',
+                'port']
+        )
+        return ConnectionData(self.PG_SUPER_DB,
+                              self.PG_SUPER_USER,
+                              self.PG_SUPER_PASSWORD,
+                              self.PG_HOST,
+                              self.PG_PORT)
 
     def get_database_url(self) -> str:
         """

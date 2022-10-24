@@ -6,9 +6,9 @@ from psycopg2.extensions import (
     connection as psycopg2_conn,
     cursor as psycopg2_cursor
 )
-from src.utils.psql_db_manager.core.utils import (
+from src.utils.psql_db_manager.core.utils.handlers import (
     Messenger,
-    handle_exceptions
+    handle_sql_exceptions
 )
 from src.utils.psql_db_manager.core.settings.sql_queries import QUERIES
 
@@ -42,13 +42,13 @@ class SQLOperation:
         else:
             self.messenger.send_error_msg(method, *args)
 
-    @handle_exceptions(Error)
+    @handle_sql_exceptions(Error)
     def _check_out(self, method: str, *args) -> Any:
         cursor = self._execute_query(method, *args)
         already_existing, = cursor.fetchone()
         return already_existing
 
-    @handle_exceptions(Error)
+    @handle_sql_exceptions(Error)
     def _execute_query(self, method: str, *args) -> psycopg2_cursor:
         cursor = self.connection.cursor()
         methods: dict = self.queries[self.sql_obj]

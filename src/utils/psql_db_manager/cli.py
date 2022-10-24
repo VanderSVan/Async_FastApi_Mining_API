@@ -2,7 +2,7 @@ import argparse
 
 from src.config import get_settings
 from src.utils.psql_db_manager.main import create_all, drop_all
-from src.utils.psql_db_manager.core.utils import PsqlDatabaseConnection
+from src.utils.psql_db_manager.core.utils.connection import get_db_connect
 
 settings = get_settings()
 
@@ -29,7 +29,7 @@ def create_arguments():
 def main():
     args = create_arguments()
 
-    with PsqlDatabaseConnection() as conn:
+    with get_db_connect(settings.get_psql_db_connection_data()) as conn:
         parameters = dict(
             connection=conn,
             db_name=args.db_name if args.db_name else settings.PG_USER_DB,
