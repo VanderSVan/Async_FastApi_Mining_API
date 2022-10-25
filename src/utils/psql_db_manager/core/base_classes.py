@@ -1,4 +1,3 @@
-from dataclasses import dataclass
 from typing import Any, Literal
 
 from psycopg2 import Error
@@ -13,7 +12,6 @@ from src.utils.psql_db_manager.core.utils.handlers import (
 from src.utils.psql_db_manager.core.settings.sql_queries import QUERIES
 
 
-@dataclass
 class SQLOperation:
     def __init__(self,
                  connection: psycopg2_conn,

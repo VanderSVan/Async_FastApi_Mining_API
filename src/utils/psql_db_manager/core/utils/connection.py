@@ -17,6 +17,9 @@ def get_db_connect(connection_data: DatabaseConnectionData,
                    isolation_level: int = ISOLATION_LEVEL_AUTOCOMMIT,
                    extra_exc_info: bool = False
                    ) -> Generator[psycopg2_conn, None, None]:
+    """
+    Connects to the database by input parameters
+    """
     try:
         connection = connect(**connection_data._asdict())
         connection.set_isolation_level(isolation_level)
