@@ -7,8 +7,8 @@ from httpx import AsyncClient
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from src.utils.psql_db_manager.core.utils import PsqlDatabaseConnection
-from src.utils.psql_db_manager.main import create_all, drop_all
+from src.utils.psql_db_manager.core.utils.connection import get_db_connect
+from src.utils.psql_db_manager.main import SQLOperation
 from src.config import get_settings
 from src.db.db_sqlalchemy import async_engine, BaseModel
 from src.api.factory_app import create_app
@@ -22,15 +22,15 @@ db_config = setting.TEST_DATABASE
 
 @pytest.fixture(scope="package", autouse=True)
 def create_test_db():
-    with PsqlDatabaseConnection() as conn:
-        params = dict(connection=conn,
-                      db_name=db_config['db_name'],
-                      username=db_config['username'],
-                      user_password=db_config['user_password'],
-                      role_name=db_config['role_name']
-                      )
-        drop_all(**params)
-        create_all(**params)
+    with get_db_connect(setting.get_psql_db_connection_data()) as conn:
+        sql_operation = SQLOperation(connection=conn,
+                                     db_name=db_config['db_name'],
+                                     username=db_config['username'],
+                                     user_password=db_config['user_password'],
+                                     role_name=db_config['role_name']
+                                     )
+        sql_operation.drop_all()
+        sql_operation.create_all()
 
 
 @pytest.fixture(scope="session", autouse=True)

@@ -1,7 +1,7 @@
 import argparse
 
 from src.config import get_settings
-from src.utils.psql_db_manager.main import create_all, drop_all
+from src.utils.psql_db_manager.main import SQLOperation
 from src.utils.psql_db_manager.core.utils.connection import get_db_connect
 
 settings = get_settings()
@@ -37,10 +37,12 @@ def main():
             user_password=args.user_password if args.user_password else settings.PG_USER_PASSWORD,
             role_name=args.role_name if args.role_name else settings.PG_ROLE
         )
+        sql_operation = SQLOperation(**parameters)
+
         if args.create_db:
-            create_all(**parameters)
+            sql_operation.create_all()
         elif args.drop_db:
-            drop_all(**parameters)
+            sql_operation.drop_all()
         else:
             raise ValueError("arguments '--create_db' and '--drop_db' "
                              "cannot be empty at the same time.")

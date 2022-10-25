@@ -34,9 +34,9 @@ class Settings(BaseSettings):
     PG_SUPER_PASSWORD: str = Field(..., env='PG_SUPER_PASSWORD')
     PG_HOST: str = Field(..., env='PG_HOST')
     PG_PORT: str = Field(..., env='PG_PORT')
-    PG_USER_DB: str = Field(..., env='PG_USER_DB')
-    PG_USER: str = Field(..., env='PG_USER')
-    PG_USER_PASSWORD: str = Field(..., env='PG_USER_PASSWORD')
+    PG_USER_DB: str = Field(None, env='PG_USER_DB')
+    PG_USER: str = Field(None, env='PG_USER')
+    PG_USER_PASSWORD: str = Field(None, env='PG_USER_PASSWORD')
     PG_ROLE: str = Field(None, env='PG_ROLE')
 
     # Database for tests:
